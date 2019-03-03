@@ -5,20 +5,32 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages="com.sprphnx.springsecurity")
-public class AppConfig {
+/*
+ * This class is similar to spring-context.xml
+ */
 
-	@Bean
+
+@Configuration //notify this is a configuration class
+@EnableWebMvc //enable <mvc:annotation driven> as in spring context.xml
+@ComponentScan(basePackages="com.sprphnx.springsecurity") //component scanning similar to the one in xml 
+public class AppConfig implements WebMvcConfigurer{
+
+	@Bean //spring bean declaration, the beanId in the method name.
 	public ViewResolver viewResolver(){
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jsp");
 		
 		return viewResolver;
+	}
+	
+	@Override
+	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+	    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
 }
