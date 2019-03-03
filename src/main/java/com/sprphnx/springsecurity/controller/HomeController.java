@@ -16,4 +16,13 @@ public class HomeController {
 		return "login";
 	}
 	
+	@GetMapping("/leaders") 
+	public String leaders() {
+		return "leader";
+	}
+	
+	@GetMapping("/admins") 
+	public String admins() {
+		return "admin";
+	}
 }
