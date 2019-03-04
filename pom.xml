@@ -41,15 +41,14 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 
-
-
-		<!-- Servlet, JSP and JSTL support -->
+		<!-- Servlet (This is required for all Java configuration)-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
 
+		<!-- Servlet, JSP and JSTL support -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
