@@ -13,6 +13,9 @@
 		<form:form
 			action="${pageContext.request.contextPath}/authenticateUser"
 			method="POST">
+			<c:if test="${param.logout!=null }">
+				<i>You have logged out successfully</i>
+			</c:if>
 			<h1>Sign In</h1>
 			<input type="text" placeholder="Username" name="username">
 			<input type="password" placeholder="Password" name="password">
