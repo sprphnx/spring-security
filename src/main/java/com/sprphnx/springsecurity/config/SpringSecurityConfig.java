@@ -18,8 +18,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		UserBuilder users = User.withDefaultPasswordEncoder();
 		
 		auth.inMemoryAuthentication().withUser(users.username("rohananoop").password("test123").roles("EMP"));
-		auth.inMemoryAuthentication().withUser(users.username("ramyarohan").password("test123").roles("MGR"));
-		auth.inMemoryAuthentication().withUser(users.username("nayanarohan").password("test123").roles("ADM"));
+		auth.inMemoryAuthentication().withUser(users.username("ramyarohan").password("test123").roles("EMP","MGR"));
+		auth.inMemoryAuthentication().withUser(users.username("nayanarohan").password("test123").roles("EMP","ADM"));
 	}
 
 	
@@ -30,7 +30,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/resources/**").permitAll().and().authorizeRequests().anyRequest()
+		http.authorizeRequests().antMatchers("/resources/**").permitAll()
+		.and().authorizeRequests().antMatchers("/").hasRole("EMP")
+		.and().authorizeRequests().antMatchers("/leaders/**").hasRole("MGR")
+		.and().authorizeRequests().antMatchers("/admins/**").hasRole("ADM")
+		.and().authorizeRequests().anyRequest()
 				.authenticated().and().formLogin().loginPage("/showLoginPage").loginProcessingUrl("/authenticateUser")
 				.permitAll().and().logout().permitAll();
 	

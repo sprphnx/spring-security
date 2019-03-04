@@ -13,6 +13,11 @@
 	:
 	<security:authentication property="principal.authorities" />
 	<hr>
+	<h1>Hey, This web application is running with No WEB.XML !!!!</h1>
+	
+	<a href="${pageContext.request.contextPath}/leaders">Leaders</a>
+	<a href="${pageContext.request.contextPath}/admins">Admins</a><br>
+
 	<form:form action="logout" method="POST">
 		<button type="submit">Logout</button>
 	</form:form>
